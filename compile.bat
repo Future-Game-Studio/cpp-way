@@ -1,0 +1,1 @@
+mingw8 -o main.exe -std=c++2a -c ./main.cpp 

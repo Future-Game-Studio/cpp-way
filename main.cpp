@@ -8,10 +8,18 @@
 // this works only on windows
 // sudo apt-get install libncurses5-dev libncursesw5-dev
 //#include <conio.h>
- 
+
+void printList(std::list<int> &list)
+{
+    for (auto &i : list)
+    {
+        std::cout << "(" << i << ")" << std::endl;
+    }
+}
+
 /* program entry point */
 int main()
-{ 
+{
     std::cout << "Input N: ";
     int n;
     std::cin >> n;
@@ -22,6 +30,11 @@ int main()
     heapType heap;
     std::list<int> list1(*arr1);
     std::list<int> list2(*arr2);
+    for (int i = 0; i < 10; i++)
+        list1.push_back(i * 100);
+
+    printList(list1);
+
     delete arr2;
     delete arr1;
 
@@ -35,18 +48,18 @@ int main()
     std::cin.clear();
     std::cin.sync();
     std::cin.ignore();
-    
+
     // this works only on windows
     //system("pause");
 }
 
-// prints everything you have in 
+// prints everything you have in
 // heap iterating down two levels
 void printHeap(heapType &heap)
 {
     // iterating over heap
     std::cout << '\n'
-         << std::string(10, '-') << "<heap>" << std::string(10, '-') << '\n';
+              << std::string(10, '-') << "<heap>" << std::string(10, '-') << '\n';
 
     if (heap.size() == 0)
     {
@@ -58,7 +71,7 @@ void printHeap(heapType &heap)
         {
             for (auto &j : i)
                 std::cout << "(" << j << ")"
-                     << " ";
+                          << " ";
 
             std::cout << '\n';
         }
@@ -75,8 +88,8 @@ void fillHeap(heapType &heap, listType &l1, listType &l2)
         for (auto &&j : l2)
         {
             // randomizing pairs
-            i = 1 + rand() % 9 + j;
-            g.push_back(i);
+            auto f = 1 + rand() % 9 + j * i; // lets use two values now
+            g.push_back(f);
         }
         heap.push_back(g);
     }

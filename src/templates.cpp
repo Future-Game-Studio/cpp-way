@@ -11,8 +11,8 @@ using namespace examples;
 
 int main()
 {
-    templateFunctions();
-    // templateClass();
+    //templateFunctions();
+    templateClass();
     return 0;
 }
 
@@ -26,7 +26,7 @@ void templateFunctions()
     std::cout << " Initial array 1: ";
     printArray(a, n);
 
-    std::array<size_t, n> v{100, 250, 30, 50, 5};
+    std::array<size_t, n> v{1000, 250, 30, 50, 5};
     std::cout << " Initial array 2: ";
     printArray(v.data(), v.size());
 
@@ -72,6 +72,8 @@ void templateClass()
     auto mat = x[0] * x[1];
     mat.ShowMatrix();
     // dont forget to clean
+
+    // delete x;
     free(x);
 #pragma endregion Matrix_Example
 }

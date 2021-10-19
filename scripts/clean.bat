@@ -1,6 +1,8 @@
 rd /Q /S "../app"
-del /Q /S "../src/**/*.o"
-del /Q /S "../src/**/*.ilk"
-del /Q /S "../src/**/*.obj"
-del /Q /S "../src/**/*.pdb"
-del /Q /S "../src/**/*.exe"
+cd ..
+del /Q /S "*.o"
+del /Q /S "*.ilk"
+del /Q /S "*.obj"
+del /Q /S "*.pdb"
+del /Q /S "*.exe"
+cd scripts

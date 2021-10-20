@@ -53,6 +53,8 @@ int main()
 
     a = &origin; // without this line there would be segmentation fault
 
+    std::cout << "Reference b (null ref): " << b << std::endl;
+
     // references can not be null. pointers can
     if (a != nullptr)
     {
@@ -63,14 +65,14 @@ int main()
         MethodCallWithRefParameter(b, a);
         std::cout << "Reference b (after method call): " << b << std::endl;
         std::cout << "Pointer a (after method call): " << *a << std::endl;
-        MethodCallWithCopyParameter(b);
+        MethodCallWithCopyParameter(*a);
         std::cout << "Reference b (after copy call): " << b << std::endl;
     }
 
     const int *pconst;
     const int constVal = 2;
     pconst = &origin;
-    //  int val = pconst++; // error const pointer is not arithmetic.
+    /// int val = pconst++; // error const pointer is not arithmetic.
     const int *const pconst2 = &b;
     // pconst2 = &origin; // pointer can not be reassigned
     std::cout << "Reference const p : " << b << std::endl;

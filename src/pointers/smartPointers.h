@@ -16,16 +16,26 @@ public:
         std::cout << "Created " << _name << std::endl;
     }
 
+    void SetSomeValue(const int & value) const
+    {
+        mutableVal = value;
+    }
+
     ~SomeClass()
     {
         std::cout << "Destroyed " << _name << std::endl;
     }
+
+    std::weak_ptr<SomeClass> *Target;
 };
 
 #endif
 
 void PassPtr(const std::weak_ptr<SomeClass> &ptr)
 {
+    const SomeClass *obj = new SomeClass("test");
+    obj->SetSomeValue(100);
+
     // retreive object
     if (!ptr.expired())
     {
@@ -37,9 +47,18 @@ void PassPtr(const std::weak_ptr<SomeClass> &ptr)
 
 void SmartSharedPtr()
 {
+    auto obj1 = new SomeClass("obj1");
+    auto obj2 = new SomeClass("obj1");
+    auto obj1Shared = std::make_shared<SomeClass>(*obj1);
+    auto obj2Shared = std::make_shared<SomeClass>(*obj2);
+    std::weak_ptr<SomeClass> obj1weak = obj1Shared;
+    std::weak_ptr<SomeClass> obj2weak = obj2Shared;
+    obj1->Target = &obj1weak;
+    obj2->Target = &obj2weak;
+
     std::shared_ptr<SomeClass> largePtr = std::make_shared<SomeClass>("Test shared_ptr");
     // or
-    // std::shared_ptr largePtr = std:shared_ptr(new SomeClass("Test shared_ptr"));
+    //std::shared_ptr<SomeClass> largePtr = std::shared_ptr<SomeClass>(new SomeClass("Test shared_ptr"));
 
     {
         std::shared_ptr<SomeClass> ptr2 = largePtr;
@@ -61,10 +80,15 @@ void SmartSharedPtr()
 
 void SmartUniquePtr()
 {
-    std::shared_ptr<SomeClass> largePtr = std::make_shared<SomeClass>("Test unique_ptr");
+    std::unique_ptr<int> largePtr = std::make_unique<int>();
 
     // error. ptr must be unique
-    //std::unique_ptr ptr2 = largePtr;
+    //std::unique_ptr<int> ptr2 = largePtr;
+
+    if (largePtr)
+    {
+        auto objPtr = largePtr.get();
+    }
 }
 
 void SmartWeakPtr()

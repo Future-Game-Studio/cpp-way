@@ -16,7 +16,7 @@ public:
         std::cout << "Created " << _name << std::endl;
     }
 
-    void SetSomeValue(const int & value) const
+    void SetSomeValue(const int &value) const
     {
         mutableVal = value;
     }
@@ -47,8 +47,11 @@ void PassPtr(const std::weak_ptr<SomeClass> &ptr)
 
 void SmartSharedPtr()
 {
+    // More detailed reference: http://www.cplusplus.com/reference/memory/unique_ptr/
+
+    // circular refference example
     auto obj1 = new SomeClass("obj1");
-    auto obj2 = new SomeClass("obj1");
+    auto obj2 = new SomeClass("obj2");
     auto obj1Shared = std::make_shared<SomeClass>(*obj1);
     auto obj2Shared = std::make_shared<SomeClass>(*obj2);
     std::weak_ptr<SomeClass> obj1weak = obj1Shared;
@@ -80,6 +83,7 @@ void SmartSharedPtr()
 
 void SmartUniquePtr()
 {
+    // More detailed reference: http://www.cplusplus.com/reference/memory/unique_ptr/
     std::unique_ptr<int> largePtr = std::make_unique<int>();
 
     // error. ptr must be unique
@@ -93,6 +97,7 @@ void SmartUniquePtr()
 
 void SmartWeakPtr()
 {
+    // More detailed reference: http://www.cplusplus.com/reference/memory/weak_ptr/
     std::shared_ptr<SomeClass> largePtr = std::make_shared<SomeClass>("Test weak_ptr");
 
     {
@@ -106,7 +111,12 @@ void SmartWeakPtr()
         {
             // do something with ptr
         }
-    }
 
-    largePtr.reset(); // delete manually
+        largePtr.reset(); // delete manually
+
+        if (!ptr2.expired())
+        {
+            // safe check if ptr is valid
+        }
+    }
 }

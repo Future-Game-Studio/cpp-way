@@ -15,6 +15,7 @@ public:
         // OR
         // this->y = y;
         // this->x = x;
+        std::cout << "Square " << name << " created." << std::endl;
     }
 
     ~Square() override
@@ -30,7 +31,7 @@ public:
         return sizeX * sizeY;
     }
 
-    Square operator+(Square &obj)
+    Square operator+(Square &obj) const
     {
         return Square(std::max(obj.sizeX, sizeX), std::max(obj.sizeY, sizeY));
     }

@@ -5,12 +5,13 @@
 #include "../models/square.h"
 #include "../models/cylinder.h"
 
-void printArea(Square &shape)
+void printArea(const Square &shape)
 {
     std::cout << "Custom implementation of printer for Square" << std::endl;
     std::cout << "Square area (custom): " << shape.GetArea() << std::endl;
 }
-void printArea(Shape &shape)
+
+void printArea(const Shape &shape)
 {
     std::string objectName;
     if (typeid(shape) == typeid(Square))

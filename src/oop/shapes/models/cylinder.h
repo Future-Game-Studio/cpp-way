@@ -13,6 +13,7 @@ public:
     Cylinder(float r, float h) : Shape(h, "cylinder"), r(r), h(h)
     {
         name = "cylinder(r" + std::to_string(r) + ",h" + std::to_string(h) + ")";
+        std::cout << "Cylinder " << name << " created." << std::endl;
     }
 
     float GetArea() const

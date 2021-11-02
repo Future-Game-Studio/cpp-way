@@ -10,7 +10,7 @@ int main()
     {
         auto shapeDyn = (Shape *)new Square(6, 7);
         printArea(*shapeDyn);
- 
+
         // clear mem first!
         delete shapeDyn;
 
@@ -24,8 +24,11 @@ int main()
 
     {
         auto shape1 = std::make_unique<Cylinder>(10, 15);
-        printArea(*shape1);
-
+        if (shape1)
+        {
+            printArea(*shape1);
+        }
+        
         auto shape2 = std::make_unique<Square>(7, 3);
         printArea(*shape2);
         auto shape3 = std::make_unique<Square>(4, 10);

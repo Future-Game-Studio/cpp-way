@@ -12,11 +12,11 @@ private:
 public:
     Cylinder(float r, float h) : Shape(h, "cylinder"), r(r), h(h)
     {
-        name = "cylinder(r" + std::to_string(r) + ",h" + std::to_string(h) + ")";
-        std::cout << "Cylinder " << name << " created." << std::endl;
+        _name = "cylinder(r" + std::to_string(r) + ",h" + std::to_string(h) + ")";
+        std::cout << "Cylinder " << _name << " created." << std::endl;
     }
 
-    float GetArea() const
+    float GetArea() const override 
     {
         return 2 * pi() * r * h + 2 * pi() * std::pow(r, 2);
     }

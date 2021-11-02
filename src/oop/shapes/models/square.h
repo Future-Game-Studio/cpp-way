@@ -11,11 +11,11 @@ class Square : public Shape
 public:
     Square(float sx, float sy) : Shape(sx), sizeX(sx), sizeY(sy)
     {
-        name = "square(x" + std::to_string(sx) + ",y" + std::to_string(sy) + ")";
+        _name = "square(x" + std::to_string(sx) + ",y" + std::to_string(sy) + ")";
         // OR
-        // this->y = y;
-        // this->x = x;
-        std::cout << "Square " << name << " created." << std::endl;
+        this->sizeY = sy;
+        this->sizeX = sx;
+        std::cout << "Square " << _name << " created." << std::endl;
     }
 
     ~Square() override

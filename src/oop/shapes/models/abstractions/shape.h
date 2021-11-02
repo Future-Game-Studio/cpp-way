@@ -6,12 +6,12 @@ private:
     int _baseSize;
 
 protected:
-    std::string name; // why it's not const &
+    std::string _name; // why it's not const &
 
 public:
     Shape(int size, std::string name) : Shape(size)
     {
-        name = name; // copy
+        _name = name; // copy
         std::cout << "Shape " << name << " created. Base size: " << _baseSize << std::endl;
     }
 
@@ -22,5 +22,5 @@ public:
 
     virtual float GetArea() const = 0; // pure virtual function
 
-    virtual ~Shape() { std::cout << "Shape " << name << " disposed" << std::endl; }
+    virtual ~Shape() { std::cout << "Shape " << _name << " disposed" << std::endl; }
 };

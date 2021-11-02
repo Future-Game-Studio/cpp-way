@@ -8,11 +8,14 @@
 #include <math.h>
 #endif
 
-constexpr double pi()
+#ifdef ISCPP20
+constexpr 
+#endif
+double pi()
 {
 #ifdef ISCPP20
     return std::numbers::pi;
 #else
     return std::atan(1) * 4;
 #endif
-} 
+}

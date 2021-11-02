@@ -1,4 +1,7 @@
 #pragma once
+#include "../../behavioral/abstractShapeVisitor.h"
+#include <iostream>
+#include "../../helpers/debug.h"
 
 class Shape
 {
@@ -12,7 +15,9 @@ public:
     Shape(int size, std::string name) : Shape(size)
     {
         _name = name; // copy
+#ifdef DEBUG_OBJECT_LIFETIME
         std::cout << "Shape " << name << " created. Base size: " << _baseSize << std::endl;
+#endif
     }
 
     Shape(int size)
@@ -22,5 +27,12 @@ public:
 
     virtual float GetArea() const = 0; // pure virtual function
 
-    virtual ~Shape() { std::cout << "Shape " << _name << " disposed" << std::endl; }
+    virtual void Accept(AbstractShapeVisitor *visitor) const = 0; // pure virtual function
+
+    virtual ~Shape()
+    {
+#ifdef DEBUG_OBJECT_LIFETIME
+        std::cout << "Shape " << _name << " disposed" << std::endl;
+#endif
+    }
 };

@@ -13,3 +13,9 @@ Express intro to C++
 5. Type `compile {name_of_cpp}` or (`./compile.sh {name_of_cpp}` on linux)
 6. Profit
 
+### Some usefull links:
+
+1. https://www.geeksforgeeks.org/c-plus-plus
+2. https://en.cppreference.com/w/cpp/header
+3. https://www.cplusplus.com/reference/
+4. https://refactoring.guru/design-patterns/

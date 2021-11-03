@@ -88,17 +88,21 @@ public:
     {
         _fs = std::make_unique<std::ofstream>(fileName, std::ios_base::out);
     }
+    void ThrowIfNull(const std::ofstream *ptr) const
+    {
+        if (ptr == nullptr)
+            throw "Stream pointer is null";
+    }
 
     void Print(const std::string &name, const Shape *item) const
     {
-        if (_fs != nullptr)
-            *_fs << name << " area: " << item->GetArea() << std::endl;
-        else
-            throw("File is not open");
+        ThrowIfNull(_fs.get());
+        *_fs << name << " area: " << item->GetArea() << std::endl;
     }
 
     void Visit(const Cylinder *item) const override
     {
+        ThrowIfNull(_fs.get());
         // cylider specific logic
         // abstract shape parameters printing
         *_fs << "-----" << std::endl;
@@ -111,6 +115,7 @@ public:
 
     void Visit(const Square *item) const override
     {
+        ThrowIfNull(_fs.get());
         *_fs << "-----" << std::endl;
         Print("Square", reinterpret_cast<const Shape *>(item));
         // print cylinder height
@@ -120,6 +125,7 @@ public:
 
     void Visit(const Circle *item) const override
     {
+        ThrowIfNull(_fs.get());
         *_fs << "-----" << std::endl;
         Print("Circle", reinterpret_cast<const Shape *>(item));
         *_fs << "Circle R: " << item->GetRadius() << std::endl;

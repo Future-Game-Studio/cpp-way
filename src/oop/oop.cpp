@@ -8,6 +8,7 @@
 #include "shapes/behavioral/abstractShapeVisitor.h"
 #include "shapes/behavioral/printers.h"
 #include "shapes/factory/shapeGenerator.h"
+#include <exception>
 
 void pointersRecall()
 {
@@ -51,7 +52,7 @@ void solidPrinciples()
 
     const auto consoleVisitor = std::make_unique<ConsolePrinterVisitor>();
     const auto fileVisitor = std::make_unique<FileExportVisitor>();
-    const auto perimeterVisitor = std::make_unique<SumPerimeterVisitor>(); 
+    const auto perimeterVisitor = std::make_unique<SumPerimeterVisitor>();
     const auto areaVisitor = std::make_unique<SumAreaVisitor>();
 
     const std::vector<AbstractShapeVisitor *> visitors{
@@ -60,6 +61,7 @@ void solidPrinciples()
         dynamic_cast<AbstractShapeVisitor *>(perimeterVisitor.get()),
         dynamic_cast<AbstractShapeVisitor *>(areaVisitor.get())};
     {
+
         fileVisitor->CreateFile("./oop-test.log");
 
         const auto circlePerimeterSum = std::make_unique<SumPerimeterVisitor>();
@@ -68,6 +70,15 @@ void solidPrinciples()
         std::cout << "Printing all circles:" << std::endl;
         for (const auto &circle : circles)
         {
+            try
+            {
+                fileVisitor->Visit(circle.get());
+            }
+            catch (...)
+            {
+                std::cout << "File is not ready" << std::endl;
+                return;
+            }
             circlePerimeterSum->Visit(circle.get());
             circleAreaSum->Visit(circle.get());
             for (const auto &visitor : visitors)

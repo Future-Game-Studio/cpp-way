@@ -48,7 +48,8 @@ app/*
 .vscode/*
 !.vscode/tasks.json
 !.vscode/launch.json
-*.code-workspace
+# Enabled workspace to share my settings
+!*.code-workspace
 
 ### VisualStudioCode Patch ###
 # Ignore all local history of files

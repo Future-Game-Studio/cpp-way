@@ -6,6 +6,7 @@
 #include <iostream>
 #include <fstream>
 #include "../math/m_pi.h"
+#include "../helpers/exceptions.h"
 
 class SumPerimeterVisitor : public AbstractShapeVisitor
 {
@@ -91,7 +92,7 @@ public:
     void ThrowIfNull(const std::ofstream *ptr) const
     {
         if (ptr == nullptr)
-            throw "Stream pointer is null";
+            throw fileNotReady("Stream pointer is null");
     }
 
     void Print(const std::string &name, const Shape *item) const

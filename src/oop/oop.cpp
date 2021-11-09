@@ -5,6 +5,7 @@
 #include "shapes/models/square.h"
 #include "shapes/models/cylinder.h"
 #include "shapes/helpers/printer.h"
+#include "shapes/helpers/exceptions.h"
 #include "shapes/behavioral/abstractShapeVisitor.h"
 #include "shapes/behavioral/printers.h"
 #include "shapes/factory/shapeGenerator.h"
@@ -70,19 +71,26 @@ void solidPrinciples()
         std::cout << "Printing all circles:" << std::endl;
         for (const auto &circle : circles)
         {
+            const auto circleRef = circle.get();
             try
             {
-                fileVisitor->Visit(circle.get());
+                fileVisitor->Visit(circleRef);
+            }
+            catch (fileNotReady &ex)
+            {
+                std::cout << "File is not ready" << std::endl;
+                std::cout << "Error: " << ex.Message() << std::endl;
+                return;
             }
             catch (...)
             {
-                std::cout << "File is not ready" << std::endl;
-                return;
+                std::cout << "Other magic stuff" << std::endl;
             }
-            circlePerimeterSum->Visit(circle.get());
-            circleAreaSum->Visit(circle.get());
+
+            circlePerimeterSum->Visit(circleRef);
+            circleAreaSum->Visit(circleRef);
             for (const auto &visitor : visitors)
-                visitor->Visit(circle.get());
+                visitor->Visit(circleRef);
         }
         std::cout << "Circles perimeter: " << circlePerimeterSum->GetSum() << std::endl;
         std::cout << "Circles area: " << circleAreaSum->GetSum() << std::endl;

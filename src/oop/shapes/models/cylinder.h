@@ -5,11 +5,13 @@
 #include "../math/m_pi.h"
 #include "../helpers/debug.h"
 #include <string>
+#include <functional>
 
 class Cylinder : public Circle
 {
 private:
     float _r, _h;
+    std::function<void(Cylinder&)> _handler;
 
 public:
     Cylinder(float r, float h) : Circle(r, "cylinder"), _r(r), _h(h)
@@ -30,5 +32,18 @@ public:
     void Accept(AbstractShapeVisitor *visitor) const override
     {
         visitor->Visit(this);
+    }
+
+    void RegisterDataChangeHandler(const std::function<void(Cylinder&)> &lam)
+    {
+        this->_handler = lam;
+    }
+
+    void SetData(Cylinder &other)
+    {
+        this->_r = other._r;
+        this->_h = other._h;
+        this->_name = other._name;
+        _handler(other);
     }
 };

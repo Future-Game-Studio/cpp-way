@@ -63,7 +63,15 @@
 			"numbers": "cpp",
 			"sstream": "cpp",
 			"fstream": "cpp",
-			"random": "cpp"
+			"random": "cpp",
+			"*.tcc": "cpp",
+			"cstdarg": "cpp",
+			"cwctype": "cpp",
+			"deque": "cpp",
+			"memory_resource": "cpp",
+			"numeric": "cpp",
+			"string_view": "cpp",
+			"iomanip": "cpp"
 		}
 	},
 	"extensions": {
@@ -77,6 +85,12 @@
 			"visualstudioexptteam.vscodeintellicode",
 			"ms-vscode.vs-keybindings",
 			"wayou.vscode-todo-highlight"
+		]
+	},
+	"launch": {
+		"version": "0.2.0",
+		"configurations": [ 
+			
 		]
 	}
 }

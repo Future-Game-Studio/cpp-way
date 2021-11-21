@@ -19,6 +19,7 @@ public:
 
     void Run()
     {
+        const auto logger = &std::cout;
         const auto cylinderModel = std::make_shared<Cylinder>(10, 23);
 
         _abstractModel = std::weak_ptr(cylinderModel);
@@ -28,12 +29,12 @@ public:
         {
             const auto abstractModelPtr = _abstractModel.lock().get();
             // create a view for the model
-            view = new ShapeConsoleView(abstractModelPtr);
-            // register the data-change event 
+            view = new ShapeConsoleView(abstractModelPtr, logger);
+            // register the data-change event
             abstractModelPtr->RegisterDataChangeHandler(
-                [&view](std::string &str) -> void
+                [&view, &logger](std::string &str) -> void
                 {
-                    std::cout << "Data Changes: " << str << std::endl;
+                    *logger << "Data Changes: " << str << std::endl;
                     view->Render();
                 });
             // binds the model and the view
@@ -43,20 +44,20 @@ public:
             _controller->OnLoad();
 
             std::string modelUpdate = "New Model Name";
-            abstractModelPtr->SetData(modelUpdate); //triggers render 
+            abstractModelPtr->SetData(modelUpdate); //triggers render
         }
 
         // cylinder view
         {
             const auto abstractModelPtr = _abstractModel.lock().get();
             // create a view for the model
-            view = new CylinderConsoleView(cylinderModel.get());
+            view = new CylinderConsoleView(cylinderModel.get(), logger);
             // register the data-change event
             cylinderModel->RegisterDataChangeHandler(
-                [&view](Cylinder &data) -> void
+                [&view, &logger](Cylinder &data) -> void
                 {
-                    std::cout << "Data Changes on Cylinder (height): " << data.GetHeight() << std::endl;
-                    std::cout << "Data Changes on Cylinder (radius): " << data.GetRadius() << std::endl;
+                    *logger << "Data Changes on Cylinder (height): " << data.GetHeight() << std::endl;
+                    *logger << "Data Changes on Cylinder (radius): " << data.GetRadius() << std::endl;
                     view->Render();
                 });
 

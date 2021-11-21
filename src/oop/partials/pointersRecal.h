@@ -7,36 +7,38 @@
 
 void pointersRecall()
 {
+    auto logger = &std::cout;
+
     {
         auto shapeDyn = (Shape *)new Square(6, 7);
-        printArea(*shapeDyn);
+        printArea(*shapeDyn, logger);
 
         // clear mem first!
         delete shapeDyn;
 
         shapeDyn = (Shape *)new Cylinder(5, 4);
-        printArea(*shapeDyn);
+        printArea(*shapeDyn, logger);
 
         delete shapeDyn;
     }
 
-    std::cout << std::endl;
+    *logger << std::endl;
 
     {
         auto shape1 = std::make_unique<Cylinder>(10, 15);
         if (shape1)
         {
-            printArea(*shape1);
+            printArea(*shape1, logger);
         }
 
         auto shape2 = std::make_unique<Square>(7, 3);
-        printArea(*shape2);
+        printArea(*shape2, logger);
         auto shape3 = std::make_unique<Square>(4, 10);
-        printArea(*shape3);
+        printArea(*shape3, logger);
 
         auto shape4 = std::make_unique<Square>(*shape2 + *shape3);
-        printArea(*shape4);
+        printArea(*shape4, logger);
     }
 
-    std::cout << std::endl;
+    *logger << std::endl;
 }

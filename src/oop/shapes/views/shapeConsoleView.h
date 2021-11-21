@@ -6,13 +6,16 @@ class ShapeConsoleView
 {
 private:
     Shape *model;
+    std::ostream *logger;
 
 public:
     ShapeConsoleView() {}
-    ShapeConsoleView(Shape *model)
+
+    ShapeConsoleView(Shape *model, std::ostream *logger) : logger(logger), model(model)
     {
         this->model = model;
     }
+
     void SetShape(Shape *model)
     {
         this->model = model;
@@ -20,14 +23,14 @@ public:
 
     virtual void Render()
     {
-        if (model != nullptr)
-        {
-            std::cout << std::endl;
-            std::cout << " ### ------ Preety console output ------ ###" << std::endl;
-            std::cout << "     > Console Viewer Of Shapes >> (name) " << model->GetName() << std::endl;
-            std::cout << "     > Console Viewer Of Shapes >> (area) " << model->GetArea() << std::endl;
-            std::cout << " ### ------ < end of Shape view >  ------ ###" << std::endl;
-            std::cout << std::endl;
-        }
+        if (!model || !logger)
+            return;
+
+        *logger << std::endl;
+        *logger << " ### ------ Preety console output ------ ###" << std::endl;
+        *logger << "     > Console Viewer Of Shapes >> (name) " << model->GetName() << std::endl;
+        *logger << "     > Console Viewer Of Shapes >> (area) " << model->GetArea() << std::endl;
+        *logger << " ### ------ < end of Shape view >  ------ ###" << std::endl;
+        *logger << std::endl;
     }
 };

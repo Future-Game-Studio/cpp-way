@@ -13,6 +13,7 @@
 
 void solidPrinciples()
 {
+    const auto logger = &std::cout;
     const auto shapeGenerator = std::make_unique<ShapeGenerator>();
 
     const auto consoleVisitor = std::make_unique<ConsolePrinterVisitor>();
@@ -32,7 +33,7 @@ void solidPrinciples()
         const auto circlePerimeterSum = std::make_unique<SumPerimeterVisitor>();
         const auto circleAreaSum = std::make_unique<SumAreaVisitor>();
         const auto circles = shapeGenerator->GenerateCircles(10);
-        std::cout << "Printing all circles:" << std::endl;
+        *logger << "Printing all circles:" << std::endl;
         for (const auto &circle : circles)
         {
             const auto circleRef = circle.get();
@@ -42,13 +43,13 @@ void solidPrinciples()
             }
             catch (fileNotReady &ex)
             {
-                std::cout << "File is not ready" << std::endl;
-                std::cout << "Error: " << ex.Message() << std::endl;
+                *logger << "File is not ready" << std::endl;
+                *logger << "Error: " << ex.Message() << std::endl;
                 return;
             }
             catch (...)
             {
-                std::cout << "Other magic stuff" << std::endl;
+                *logger << "Other magic stuff" << std::endl;
             }
 
             circlePerimeterSum->Visit(circleRef);
@@ -56,15 +57,15 @@ void solidPrinciples()
             for (const auto &visitor : visitors)
                 visitor->Visit(circleRef);
         }
-        std::cout << "Circles perimeter: " << circlePerimeterSum->GetSum() << std::endl;
-        std::cout << "Circles area: " << circleAreaSum->GetSum() << std::endl;
+        *logger << "Circles perimeter: " << circlePerimeterSum->GetSum() << std::endl;
+        *logger << "Circles area: " << circleAreaSum->GetSum() << std::endl;
     }
     {
         const auto cylinderPerimeterSum = std::make_unique<SumPerimeterVisitor>();
         const auto cylinderAreaSum = std::make_unique<SumAreaVisitor>();
         const auto cylinders = shapeGenerator->GenerateCylinders(10);
 
-        std::cout << "Printing all cylinders:" << std::endl;
+        *logger << "Printing all cylinders:" << std::endl;
         for (const auto &cylinder : cylinders)
         {
             cylinderPerimeterSum->Visit(cylinder.get());
@@ -72,9 +73,9 @@ void solidPrinciples()
             for (const auto &visitor : visitors)
                 visitor->Visit(cylinder.get());
         }
-        std::cout << "Cylinders area: " << cylinderAreaSum->GetSum() << std::endl;
-        std::cout << "Cylinders perimeter: " << cylinderPerimeterSum->GetSum() << std::endl;
+        *logger << "Cylinders area: " << cylinderAreaSum->GetSum() << std::endl;
+        *logger << "Cylinders perimeter: " << cylinderPerimeterSum->GetSum() << std::endl;
     }
-    std::cout << "Shapes area: " << areaVisitor->GetSum() << std::endl;
-    std::cout << "Shapes perimeter: " << perimeterVisitor->GetSum() << std::endl;
+    *logger << "Shapes area: " << areaVisitor->GetSum() << std::endl;
+    *logger << "Shapes perimeter: " << perimeterVisitor->GetSum() << std::endl;
 }

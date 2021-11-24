@@ -26,7 +26,7 @@ void swap(int &x, int &y)
 
 int main()
 {
-    const auto logger = &std::cout;
+    auto logger = &std::cout;
     int origin = 10;
 
     int *a;

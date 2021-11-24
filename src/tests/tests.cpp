@@ -10,8 +10,7 @@
 
 void test_example(void)
 {
-    void *mem;
-    int a, b;
+    void *mem; 
 
     mem = malloc(10);
     TEST_CHECK(mem != NULL);
@@ -44,7 +43,7 @@ void test_cylinder_view_null_logger(void)
     view.Render();
 }
 
-void test_cylinder_view_throws_on_nullptr(void)
+void test_cylinder_view_onrender_throws_nullptr(void)
 {
     // Prepare
     std::stringstream renderer;
@@ -54,9 +53,20 @@ void test_cylinder_view_throws_on_nullptr(void)
     TEST_EXCEPTION(view.Render(), NullObjectException);
 }
 
+void test_cylinder_view_onsetmodel_throws_nullptr(void)
+{
+    // Prepare
+    std::stringstream renderer;
+    auto view = CylinderConsoleView(nullptr, &renderer);
+
+    // Act
+    TEST_EXCEPTION(view.SetShape(nullptr), NullObjectException);
+}
+
 TEST_LIST = {
     {"test_example", test_example},
     {"test_cylinder_view", test_cylinder_view},
     {"test_cylinder_view_null_logger", test_cylinder_view_null_logger},
-    {"test_cylinder_view_throws_on_nullptr", test_cylinder_view_throws_on_nullptr},
+    {"test_cylinder_view_onrender_throws_nullptr", test_cylinder_view_onrender_throws_nullptr},
+    {"test_cylinder_view_onsetmodel_throws_nullptr", test_cylinder_view_onsetmodel_throws_nullptr},
     {0}};

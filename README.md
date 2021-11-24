@@ -1,4 +1,4 @@
-# cpp-way
+# cpp-way [![C/C++ CI](https://github.com/Future-Game-Studio/cpp-way/actions/workflows/c-cpp.yml/badge.svg?branch=main)](https://github.com/Future-Game-Studio/cpp-way/actions/workflows/c-cpp.yml)
 Express intro to C++ 
 
 ## How to compile everything

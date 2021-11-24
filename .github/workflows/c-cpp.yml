@@ -17,8 +17,10 @@ jobs:
     - run:   |
          sudo apt update
          sudo apt install gcc-10 g++-10
+         sudo update-alternatives --install /usr/bin/gcc gcc "/usr/bin/gcc-10"
+         sudo update-alternatives --install /usr/bin/g++ g++ "/usr/bin/g++-10"
          sudo update-alternatives --set gcc "/usr/bin/gcc-10"
-         sudo update-alternatives --set g++"/usr/bin/g++-10"
+         sudo update-alternatives --set g++ "/usr/bin/g++-10"
 
       shell: bash
 

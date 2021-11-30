@@ -3,13 +3,13 @@
 
 class Shape;
 class Cylinder;
-class Square;
+class RectShape;
 class Circle;
 
 class AbstractShapeVisitor
 {
 public:
     virtual void Visit(const Cylinder *item) const = 0;
-    virtual void Visit(const Square *item) const = 0;
+    virtual void Visit(const RectShape *item) const = 0;
     virtual void Visit(const Circle *item) const = 0;
 };

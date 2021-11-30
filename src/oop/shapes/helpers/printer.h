@@ -2,21 +2,21 @@
 #include <iostream>
 #include <typeinfo>
 #include "../models/abstractions/shape.h"
-#include "../models/square.h"
+#include "../models/rectangle.h"
 #include "../models/cylinder.h"
 
-static void printArea(const Square &shape, std::ostream *logger)
+static void printArea(const RectShape &shape, std::ostream *logger)
 {
-    *logger << "Custom implementation of printer for Square" << std::endl;
-    *logger << "Square area (custom): " << shape.GetArea() << std::endl;
+    *logger << "Custom implementation of printer for RectShape" << std::endl;
+    *logger << "RectShape area (custom): " << shape.GetArea() << std::endl;
 }
 
 static void printArea(const Shape &shape, std::ostream *logger)
 {
     std::string objectName;
-    if (typeid(shape) == typeid(Square))
+    if (typeid(shape) == typeid(RectShape))
     {
-        objectName = "Square area: ";
+        objectName = "RectShape area: ";
     }
     else if (typeid(shape) == typeid(Cylinder))
     {

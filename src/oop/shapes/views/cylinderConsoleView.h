@@ -12,7 +12,7 @@ private:
 
 public:
     CylinderConsoleView() {}
-    CylinderConsoleView(Cylinder *model, std::ostream *logger) : logger(logger), model(model)
+    CylinderConsoleView(Cylinder *model, std::ostream *logger) : model(model), logger(logger)
     {
     }
 

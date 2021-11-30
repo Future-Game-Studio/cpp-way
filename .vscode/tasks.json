@@ -18,11 +18,13 @@
             "label": "C/C++: cl.exe build active file",
             "command": "cl.exe",
             "args": [
+                "/std:c++latest",
                 "/Zi",
                 "/EHsc",
-                "/Fe:",
+                "/Fe:", 
                 "${fileDirname}\\${fileBasenameNoExtension}.exe",
-                "${file}"
+                "${file}",
+                "User32.lib"
             ],
             "problemMatcher": [
                 "$msCompile"
@@ -34,7 +36,7 @@
             "label": "C/C++: gcc.exe build active file",
             "command": "C:\\MinGW11\\bin\\gcc.exe",
             "args": [
-                "-fdiagnostics-color=always",
+                "-fdiagnostics-color=always", 
                 "-g",
                 "${file}",
                 "-o",

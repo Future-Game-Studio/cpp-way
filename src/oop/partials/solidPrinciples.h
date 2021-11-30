@@ -3,7 +3,7 @@
 #include <memory>
 #include <vector>
 #include "../shapes/models/abstractions/shape.h"
-#include "../shapes/models/square.h"
+#include "../shapes/models/rectangle.h"
 #include "../shapes/models/cylinder.h"
 #include "../shapes/helpers/printer.h"
 #include "../shapes/helpers/exceptions.h"
@@ -44,7 +44,7 @@ void solidPrinciples()
             catch (fileNotReady &ex)
             {
                 *logger << "File is not ready" << std::endl;
-                *logger << "Error: " << ex.Message() << std::endl;
+                *logger << "Error: " << ex.what() << std::endl;
                 return;
             }
             catch (...)

@@ -20,7 +20,7 @@ public:
         sum += item->GetRadius() * 2 * pi() * item->GetHeight();
     }
 
-    void Visit(const Square *item) const override
+    void Visit(const RectShape *item) const override
     {
         sum += 2 * (item->GetX() + item->GetY());
     }
@@ -43,7 +43,7 @@ public:
         sum += item->GetArea();
     }
 
-    void Visit(const Square *item) const override
+    void Visit(const RectShape *item) const override
     {
         sum += item->GetArea();
     }
@@ -68,9 +68,9 @@ public:
         Print("Cylinder", static_cast<const Shape *>(item));
     }
 
-    void Visit(const Square *item) const override
+    void Visit(const RectShape *item) const override
     {
-        Print("Square", static_cast<const Shape *>(item));
+        Print("RectShape", static_cast<const Shape *>(item));
     }
 
     void Visit(const Circle *item) const override
@@ -114,13 +114,13 @@ public:
         *_fs << "-----" << std::endl;
     }
 
-    void Visit(const Square *item) const override
+    void Visit(const RectShape *item) const override
     {
         ThrowIfNull(_fs.get());
         *_fs << "-----" << std::endl;
-        Print("Square", reinterpret_cast<const Shape *>(item));
+        Print("RectShape", reinterpret_cast<const Shape *>(item));
         // print cylinder height
-        *_fs << "Square X: " << item->GetX() << " Y: " << item->GetY() << std::endl;
+        *_fs << "RectShape X: " << item->GetX() << " Y: " << item->GetY() << std::endl;
         *_fs << "-----" << std::endl;
     }
 

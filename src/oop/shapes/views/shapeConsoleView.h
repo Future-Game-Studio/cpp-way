@@ -11,7 +11,7 @@ private:
 public:
     ShapeConsoleView() {}
 
-    ShapeConsoleView(Shape *model, std::ostream *logger) : logger(logger), model(model)
+    ShapeConsoleView(Shape *model, std::ostream *logger) : model(model), logger(logger)
     {
         this->model = model;
     }

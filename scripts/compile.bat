@@ -1,6 +1,6 @@
 @echo off
 rem set some flags for warnings output and compiler optimization
-set flags=-W -Wall -O3 -std=c++2a -Wno-unknown-pragmas -Wno-clobbered
+set flags=-W -Wall -O3 -std=c++2a -Wno-unknown-pragmas
 set compiler=g++
 rem call g++ or mingw8 compiler
 if not exist "../app" mkdir "../app"

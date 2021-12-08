@@ -19,3 +19,5 @@ Express intro to C++
 2. https://en.cppreference.com/w/cpp/header
 3. https://www.cplusplus.com/reference/
 4. https://refactoring.guru/design-patterns/
+5. https://isocpp.github.io/CppCoreGuidelines/
+6. http://web.mit.edu/6.s096/www/standards.html

@@ -36,6 +36,16 @@ namespace examples
                 }
             }
         }
+
+        float &Determinant(Matrix &a)
+        {
+            Matrix *r = new Matrix(a._size);
+
+            // TODO: implement determinant operation
+
+            return *r;
+        }
+
         friend Matrix &operator*(Matrix &a, Matrix &b)
         {
             Matrix *r = new Matrix(a._size);
